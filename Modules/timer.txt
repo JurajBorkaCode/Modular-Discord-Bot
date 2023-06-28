@@ -2,7 +2,17 @@
 import asyncio
 
 @bot.command()
-async def timer(ctx, seconds: int):
+async def timer(ctx, seconds):
+    if seconds == "help":
+        await ctx.send("The timer command creates a timer that counts down and then mentions the user who started the timer")
+        await ctx.send("To use timer, use: !timer [NUM OF SECONDS]")
+        return True
+    else:
+        try:
+            seconds = int(seconds)
+        except:
+            await ctx.send("To use timer, use: !timer [NUM OF SECONDS]")
+            return True
     message = await ctx.send(f"Timer: {seconds} seconds")
 
     while seconds > 0:

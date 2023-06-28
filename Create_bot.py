@@ -4,7 +4,8 @@ import sys
 if len(sys.argv) > 1:
     bot_code = sys.argv[1]
 else:
-    print("Input your bot code in the format: Python Create_bot.py BOT_CODE")
+    print("Input your bot code in the format: Python Create_bot.py [BOT_CODE]")
+    sys.exit()
 
 
 
@@ -34,7 +35,10 @@ endCode = endCode.replace("DISCORD_BOT_CODE", bot_code)
 module_folder = "Modules"
 module_names = os.listdir(module_folder)
 
-module_names.remove('__pycache__')
+try:
+    module_names.remove('__pycache__')
+except:
+    pass
 
 module_code = []
 

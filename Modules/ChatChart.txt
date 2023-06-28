@@ -2,10 +2,22 @@
 import matplotlib.pyplot as plt
 
 @bot.command()
-async def chat_chart(ctx):
+async def chat_chart(ctx, *args):
+    scan_limit = 10000
+    if args[0] == "help":
+        await ctx.send("ChatChart creates a pie chart of the user activity of the channel")
+        await ctx.send("To use ChatChart, use: !chat_chart [NUM OF MESSAGES TO SCAN]")
+        await ctx.send("Or to scan 10,000 messages, use: !chat_chart")
+        return True
+    elif args[0] != "":
+        try:
+            scan_limit = int(args[0])
+        except:
+            await ctx.send("To use ChatChart, use: !chat_chart [NUM OF MESSAGES TO SCAN]")
+    
     messages = []
     channel = ctx.message.channel
-    async for message in ctx.channel.history(limit=10000):
+    async for message in ctx.channel.history(limit=scan_limit):
         messages.append(message)
 
     users = {}

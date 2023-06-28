@@ -1,0 +1,120 @@
+Which of the following is a unit of electric current?
+Volt
+Watt
+Ampere
+Ohm
+2
+What is the SI unit of force?
+Newton
+Joule
+Watt
+Pascal
+0
+Which of the following is an example of a scalar quantity?
+Velocity
+Acceleration
+Force
+Temperature
+3
+Which law states that for every action, there is an equal and opposite reaction?
+Newton's First Law
+Newton's Second Law
+Newton's Third Law
+Law of Conservation of Energy
+2
+What is the speed of light in a vacuum?
+3 x 10^5 m/s
+3 x 10^6 m/s
+3 x 10^7 m/s
+3 x 10^8 m/s
+3
+Which type of energy is associated with motion?
+Potential energy
+Mechanical energy
+Kinetic energy
+Thermal energy
+2
+What does the acronym "AC" stand for in AC electricity?
+Alternating Current
+Active Current
+Amperes of Current
+Amplified Current
+0
+What is the fundamental unit of capacitance?
+Farad
+Ohm
+Coulomb
+Henry
+0
+Which of the following is not a fundamental particle?
+Electron
+Proton
+Neutron
+Photon
+3
+What is the SI unit of power?
+Joule
+Watt
+Ampere
+Volt
+1
+What law describes the relationship between the pressure and volume of a gas at constant temperature?
+Boyle's Law
+Charles's Law
+Ohm's Law
+Pascal's Law
+0
+Which type of electromagnetic radiation has the highest frequency?
+Radio waves
+Microwaves
+X-rays
+Gamma rays
+3
+Which scientist is known for his laws of planetary motion?
+Isaac Newton
+Albert Einstein
+Johannes Kepler
+Galileo Galilei
+2
+What is the process of converting a solid directly into a gas called?
+Sublimation
+Condensation
+Evaporation
+Fusion
+0
+Which of the following is an example of a non-renewable energy source?
+Solar power
+Wind power
+Natural gas
+Geothermal energy
+2
+What is the unit of electric potential difference?
+Volt
+Ampere
+Ohm
+Joule
+0
+What law states that the total energy of an isolated system remains constant over time?
+Newton's First Law
+Newton's Second Law
+Law of Conservation of Energy
+Law of Conservation of Momentum
+2
+Which of the following colors of light has the highest frequency?
+Red
+Green
+Blue
+Yellow
+2
+What is the SI unit of resistance?
+Ampere
+Volt
+Ohm
+Coulomb
+2
+Which scientist is famous for his theory of general relativity?
+Isaac Newton
+Albert Einstein
+Nikola Tesla
+Thomas Edison
+1

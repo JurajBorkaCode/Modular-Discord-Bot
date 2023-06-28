@@ -1,0 +1,108 @@
+import os
+
+@bot.command()
+async def trivia(ctx, *args):
+    if args[0] == "help":
+        await ctx.send("The trivia command runs a trivia game of a certain topic")
+        await ctx.send("To use trivia, use: !trivia [SUBJECT] [NUM OF QUESTIONS]")
+        await ctx.send("To see the available subjects, use: !trivia subjects")
+        return True
+    elif args[0] == "subjects":
+        trivia_folder = "trivia"
+        trivia_names = os.listdir(trivia_folder)
+        try:
+            trivia_names.remove('__pycache__')
+        except:
+            pass
+        await ctx.send("Available Subjects:")
+        print(trivia_names)
+        for subject in trivia_names:
+            await ctx.send("- " + subject.replace(".txt",""))
+        return True
+    else:
+        try:
+            questions = []
+            question = {}
+            line_counter = 0
+            file_path = "trivia/" + args[0] + ".txt"
+            with open(file_path, "r") as file:
+                for line in file:
+                    if line_counter == 0:
+                        question = {"question": "","options": ["A) ", "B) ", "C) ", "D) "],"correct_option": 0}
+                        question["question"] = line.rstrip()
+                        line_counter += 1
+                    elif line_counter == 1:
+                        question["options"][0] += line.rstrip() + "\n"
+                        line_counter += 1
+                    elif line_counter == 2:
+                        question["options"][1] += line.rstrip() + "\n"
+                        line_counter += 1
+                    elif line_counter == 3:
+                        question["options"][2] += line.rstrip() + "\n"
+                        line_counter += 1
+                    elif line_counter == 4:
+                        question["options"][3] += line.rstrip()
+                        line_counter += 1
+                    elif line_counter == 5:
+                        question["correct_option"] += int(line.rstrip())
+                        questions.append(question)
+                        line_counter = 0
+
+
+
+        except:
+            await ctx.send("There has been an error with your input.")
+            await ctx.send("Try: !trivia [SUBJECT] [NUM OF QUESTIONS]")
+
+    question_counter = 1
+    results = {}
+
+    for question in questions:
+        try:
+            if question_counter > int(args[1]):
+                break
+        except:
+            pass
+
+        question_text = question["question"]
+        options = question["options"]
+        correct_option = question["correct_option"]
+
+        # Send the question and options as a message
+        question_message = await ctx.send(f"{question_text}\n\n{' '.join(options)}")
+
+        # Add reactions for each option
+        for i in range(len(options)):
+            await question_message.add_reaction(chr(127462 + i))
+
+        # Wait for user reactions
+        def check(reaction, user):
+            return (
+                user == ctx.author
+                and reaction.message.id == question_message.id
+                and str(reaction.emoji) in [chr(127462 + i) for i in range(len(options))]
+            )
+
+        try:
+            reaction, user = await bot.wait_for("reaction_add", check=check, timeout=30)
+
+            selected_option = ord(str(reaction.emoji)) - 127462
+
+            if selected_option == correct_option:
+                if user.name in results:
+                    results[user.name] += 1
+                else:
+                    results[user.name] = 1
+                await ctx.send("Correct answer!")
+            else:
+                await ctx.send("Incorrect answer!")
+        except asyncio.TimeoutError:
+            await ctx.send("Time's up! Moving on to the next question.")
+
+        question_counter += 1
+
+    await ctx.send("---------------")
+    await ctx.send("Trivia results:")
+    results = dict(sorted(results.items()))
+    for result in results:
+        await ctx.send(result + ": " + str(results[result]))
