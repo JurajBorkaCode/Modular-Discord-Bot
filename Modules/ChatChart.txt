@@ -1,0 +1,36 @@
+#ChatChart Module
+import matplotlib.pyplot as plt
+
+@bot.command()
+async def chat_chart(ctx):
+    messages = []
+    channel = ctx.message.channel
+    async for message in ctx.channel.history(limit=10000):
+        messages.append(message)
+
+    users = {}
+    total_messages = 0
+
+    for message in messages:
+        user = message.author
+        if user.bot:
+            continue
+        users[user] = users.get(user, 0) + 1
+        total_messages += 1
+
+    labels = [str(user) for user in users]
+    sizes = [users[user] / total_messages for user in users]
+
+    plt.pie(sizes, labels=labels, autopct='%1.1f%%')
+    plt.title('Message Distribution')
+    plt.legend(labels, loc='upper right')
+    plt.axis('equal')
+
+    # Save the chart to an image file
+    chart_file = "chart.png"
+    plt.savefig(chart_file)
+    plt.close()
+
+    # Send the chart as a message
+    chart_image = discord.File(chart_file)
+    await channel.send(file=chart_image)

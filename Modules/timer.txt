@@ -1,0 +1,13 @@
+#Timer Module
+import asyncio
+
+@bot.command()
+async def timer(ctx, seconds: int):
+    message = await ctx.send(f"Timer: {seconds} seconds")
+
+    while seconds > 0:
+        await asyncio.sleep(1)
+        seconds -= 1
+        await message.edit(content=f"Timer: {seconds} seconds")
+
+    await ctx.send(f"{ctx.author.mention}, your timer has ended!")
